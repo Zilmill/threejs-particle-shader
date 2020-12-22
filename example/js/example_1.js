@@ -21,9 +21,9 @@ var particles = new Particles(renderer, scene, particleOptions);
 
 
 // Show a sphere to visualize the center of gravity
-var sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(0.1, 10, 10),
-  new THREE.MeshBasicMaterial({color: 0x00ffff, wireframe: true})
-);
-sphere.position.set(position.x, position.y, position.z);
-scene.add(sphere);
+// var sphere = new THREE.Mesh(
+//   new THREE.SphereGeometry(0.1, 10, 10),
+//   new THREE.MeshBasicMaterial({color: 0x00ffff, wireframe: true})
+// );
+// sphere.position.set(position.x, position.y, position.z);
+// scene.add(sphere);

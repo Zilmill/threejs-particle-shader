@@ -22,18 +22,21 @@ scene.add(plane);
 
 // Get mouse intersections with plane
 var setTargtePosition = function(event) {
+  console.log(1);
   var x = event.clientX || event.originalEvent.targetTouches[0].clientX;
   var y = event.clientY || event.originalEvent.targetTouches[0].clientY;
   var mouse = new THREE.Vector2();
   mouse.x = (x / window.innerWidth) * 2 - 1;
   mouse.y = -(y / window.innerHeight) * 2 + 1;
   raycaster.setFromCamera(mouse, camera);
-  var intersects = raycaster.intersectObject(plane);
-  if(intersects.length){
-    var point = intersects[0].point;
-    sphere.position.set(point.x, point.y, point.z);
-    targetPosition.set(point.x, point.y, point.z);
-  }
+  var pos = new THREE.Vector3()
+  let nor = pos.clone().sub(camera.position).normalize();
+  let _plane = new THREE.Plane(
+        nor, -nor.x*pos.x - nor.y*pos.y - nor.z*pos.z
+      );
+  var point = raycaster.ray.intersectPlane(_plane);
+  sphere.position.set(point.x, point.y, point.z);
+  targetPosition.set(point.x, point.y, point.z);
 };
 window.$('body').on('mousemove', setTargtePosition);
 
